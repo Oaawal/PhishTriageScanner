@@ -130,7 +130,8 @@ Message:
             data = response.json()
             content = data["choices"][0]["message"]["content"]
 
-            parsed = pyjson.loads(content)
+            clean = content.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+            parsed = pyjson.loads(clean)
 
             return parsed
 
